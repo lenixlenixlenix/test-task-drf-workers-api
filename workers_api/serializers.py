@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 
 from accounts.models import CustomUser
 
@@ -16,11 +15,12 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = ["id","name", "client", "employee", "status", "date_creation", "date_update", "date_closed", "report"]
 
         
-class EditTaskForEmployeeSerizalizer(serializers.ModelSerializer):
-
+class EditTaskForEmployeeSerizalizer(serializers.ModelSerializer):    
     class Meta:
         model = Task
-        fields = ["name", "client", "employee", "status", "date_creation", "date_update", "date_closed", "report"]
-        read_only_fields = ["name", 'employee', 'date_update',"client"] 
+        fields = ["name", "client", "status", "employee", "date_creation", "date_update", "date_closed", "report"]
+        read_only_fields = ["name","date_creation",'date_update',"client"] 
+
+
 
 

@@ -40,7 +40,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         user = self.request.user
         if user.is_client:
             serializer =  TaskSerializer(Task.objects.filter(client=user), many=True)
-            return Response(serializer, many=True)
+            return Response(serializer.data)
         elif user.is_employee and not user.has_perm('workers_api.view_all_tasks'):
             # list tasks that are not with employee and employee is current user
             q1= Task.objects.filter(status="Waiting for employee")
@@ -100,4 +100,6 @@ class EditTaskEmployee(generics.UpdateAPIView):
         obj= self.queryset.get(pk=pk)
         serializer = self.serializer_class(obj)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 

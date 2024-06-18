@@ -10,5 +10,5 @@ router.register(r'tasks', TaskViewSet)
 urlpatterns = [
     path("api/", include(router.urls)),
     path("api/currentuser",CurrentUserView.as_view(), name="current-user" ),
-    path("api/<int:pk>/employee_task", EditTaskEmployee.as_view(), name="employee-edit"),
+    path("api/<int:pk>/task_employee", EditTaskEmployee.as_view(), name="employee-edit"),
 ]
